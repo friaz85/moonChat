@@ -1,4 +1,10 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+} from "@angular/core";
 import { DocumentService } from "src/app/document.service";
 import { Subscription } from "rxjs";
 import { Document } from "src/app/document";
@@ -12,6 +18,8 @@ import { startWith } from "rxjs/operators";
 export class DocumentComponent implements OnInit, OnDestroy {
   document: Document;
   private _docSub: Subscription;
+  arrMsg = [];
+  @ViewChild("message", { static: false }) message: ElementRef;
   constructor(private documentService: DocumentService) {}
 
   ngOnInit() {
@@ -31,6 +39,15 @@ export class DocumentComponent implements OnInit, OnDestroy {
   }
 
   editDoc() {
+    let msg = this.message.nativeElement.value;
+    console.log(this.message.nativeElement.value);
+    console.log();
+    this.arrMsg.push({
+      messages: msg,
+    });
+    this.document.doc = this.document.doc + "\n" + msg;
     this.documentService.editDocument(this.document);
+    this.message.nativeElement.value = "";
+    console.log(this.arrMsg);
   }
 }

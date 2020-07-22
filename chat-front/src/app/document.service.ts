@@ -13,6 +13,7 @@ export class DocumentService {
 
   getDocument(id: string) {
     this.socket.emit("getDoc", id);
+    console.log(this.documents);
   }
 
   newDocument() {

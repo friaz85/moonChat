@@ -15,7 +15,7 @@
 <mat-menu #menu="matMenu">
     <button mat-menu-item>
     <mat-icon>maps_ugc</mat-icon>
-    <span>New chat</span>
+    <span (click)="newDoc()">New chat</span>
   </button>
     <button mat-menu-item *ngFor="let docId of documents | async" (click)="loadDoc(docId)" [class.selected]="docId === currentDoc">
     <mat-icon>chat</mat-icon>

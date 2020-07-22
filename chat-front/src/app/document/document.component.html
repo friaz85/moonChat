@@ -1,7 +1,17 @@
-<textarea [(ngModel)]="document.doc" readonly></textarea>
+<textarea [(ngModel)]="document.doc" class="notes" readonly></textarea>
 <div class="row">
+    <div class="col-md-12">
+        <div class="card" *ngFor="let msg of arrMsg">
+            <div class="card-body">
+                {{msg.messages}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="document.id">
     <div class="col-md-10">
-        <input type="text" class="form-control" placeholder="Start typing..." />
+        <input type="text" class="form-control" placeholder="Escribe tu mensaje..." #message/>
     </div>
     <div class="col-md-2">
         <button class="btn btn-primary" (click)="editDoc()">Enviar</button>
