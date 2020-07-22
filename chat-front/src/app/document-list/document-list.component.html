@@ -1,0 +1,24 @@
+<!-- <div class="sidenav">
+    <span (click)="newDoc()">New Chat</span>
+    <span [class.selected]="docId === currentDoc" (click)="loadDoc(docId)" *ngFor="let docId of documents | async">{{ docId }}</span
+  >
+</div> -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+    <ul class="nav navbar-nav ml-auto text-white">
+        <mat-icon>settings</mat-icon>
+    </ul>
+</nav>
+
+<mat-menu #menu="matMenu">
+    <button mat-menu-item>
+    <mat-icon>maps_ugc</mat-icon>
+    <span>New chat</span>
+  </button>
+    <button mat-menu-item *ngFor="let docId of documents | async" (click)="loadDoc(docId)" [class.selected]="docId === currentDoc">
+    <mat-icon>chat</mat-icon>
+    <span>{{ docId }}</span>
+  </button>
+</mat-menu>
